@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/res/db">
+        <file>dbText/Hello.txt</file>
+        <file>desciptions/Mie Instan.txt</file>
+        <file>desciptions/Nasi Goreng.txt</file>
+        <file>desciptions/Nasi Kuning.txt</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>img/Mie Instan.jpg</file>
+        <file>img/Nasi Goreng.jpg</file>
+        <file>img/Nasi Kuning.jpg</file>
+    </qresource>
+    <qresource prefix="/holder">
+        <file>currentItemHandler/descriptions.txt</file>
+        <file>currentItemHandler/itemName.txt</file>
+    </qresource>
+</RCC>

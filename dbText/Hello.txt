@@ -1,0 +1,57 @@
+Nama:
+Nasi Goreng
+Resep:
+Nasi Putih
+Kategori:
+Bahan Pokok
+Jumlah:
+1 Mangkok
+Minyak
+Kategori:
+Lain-lain
+Jumlah:
+0.2 Liter;
+END
+Nama:
+Mie Instan
+Resep:
+Mie instan
+Kategori:
+Bahan Pokok
+Jumlah:
+1 Bungkus
+Air
+Kategori:
+Lain-lain
+Jumlah:
+1 Liter
+END
+Nama:
+Nasi Kuning
+Resep:
+Nasi Putih
+Kategori:
+Bahan Pokok
+Jumlah:
+1 Wajan
+Laos
+Kategori:
+Rempah
+Jumlah:
+3 biji
+Salam
+Kategori:
+Rempah
+Jumlah:
+4 Biji
+Jahe
+Kategori:
+Rempah
+Jumlah:
+4 biji
+Kunyit
+Kategori:
+Rempah
+Jumlah:
+2 Biji
+END
