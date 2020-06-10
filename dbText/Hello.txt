@@ -55,3 +55,146 @@ Rempah
 Jumlah:
 2 Biji
 END
+Nama:
+Ayam Kecap Pedas Manis
+Resep:
+batang daun bawang
+Kategori:
+Rempah
+Jumlah:
+2 biji
+merica bubuk
+Kategori:
+Rempah
+Jumlah:
+1/2 sendok teh
+ayam potong
+Kategori:
+Daging
+Jumlah:
+500 gram
+cabai rawit
+Kategori:
+Rempah
+Jumlah:
+5 buah
+Air
+Kategori:
+Lain-lain
+Jumlah:
+100 ml
+siung bawang putih
+Kategori:
+Rempah
+Jumlah:
+4 biji
+kecap manis
+Kategori:
+Bumbu
+Jumlah:
+4 sendok makan
+Jahe
+Kategori:
+Rempah
+Jumlah:
+1/2 ruas
+bawang bombay
+Kategori:
+Rempah
+Jumlah:
+1/2 buah
+Garam
+Kategori:
+Bumbu
+Jumlah:
+1/2 Sendok Teh
+tomat
+Kategori:
+Buah
+Jumlah:
+1 buah
+Minyak Goreng
+Kategori:
+Lain-lain
+Jumlah:
+secukupnya
+END
+Nama:
+Ikan Kembung Bakar
+Resep:
+ikan kembung
+
+Ikan
+
+- 1 kg
+Garam
+
+Bumbu
+
+secukupnya
+air perasan jeruk nipis
+
+Bumbu
+
+- 1 buah
+siung bawang putih
+
+Rempah
+
+- 3-4
+bawang merah
+
+Rempah
+
+- 8 siung
+cabai rawit
+
+Rempah
+
+- 4-6 buah
+cabai merah keriting
+
+Rempah
+
+- 8 buah
+jahe
+
+Rempah
+
+- 1 ruas
+kunyit dibakar
+
+Rempah
+
+- 1 cm
+kemiri disangrai
+
+Rempah
+
+- 3 butir
+minyak goreng
+
+Lain-lain
+
+- 100-150 ml
+kaldu bubuk
+
+Bumbu
+
+- 1/4 sdt
+merica bubuk
+
+Bumbu
+
+- 1/4 sdt
+gula pasir
+
+Bumbu
+
+- 1/2 sdt
+Kecap manis
+
+Bumbu
+
+secukupnya
+END

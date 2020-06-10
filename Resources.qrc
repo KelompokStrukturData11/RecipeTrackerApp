@@ -4,11 +4,15 @@
         <file>desciptions/Mie Instan.txt</file>
         <file>desciptions/Nasi Goreng.txt</file>
         <file>desciptions/Nasi Kuning.txt</file>
+        <file>desciptions/Ayam Kecap Pedas Manis.txt</file>
+        <file>desciptions/Ikan Kembung Bakar.txt</file>
     </qresource>
     <qresource prefix="/img">
         <file>img/Mie Instan.jpg</file>
         <file>img/Nasi Goreng.jpg</file>
         <file>img/Nasi Kuning.jpg</file>
+        <file>img/Ayam Kecap Pedas Manis.jpg</file>
+        <file>img/Ikan Kembung Bakar.jpg</file>
     </qresource>
     <qresource prefix="/holder">
         <file>currentItemHandler/descriptions.txt</file>
