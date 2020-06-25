@@ -86,36 +86,30 @@ void MainWindow::readRecipeDb(QMap<QString,QStringList> &recipe, QStringList &re
             }}
             recipe[foodHolder] = recipeBuffer;
             detailRecipe[foodHolder] = itemValue;
-            qDebug() << detailRecipe["Mie Instan"]["Mie Instan"];
             itemValue.clear();
         }
 
         if(buffer == "Nama:"){
             recipeBuffer.clear();
-//            qDebug() << "Nama makanan :" << buffer;
             state = "Makanan";
         }
         else if(buffer == "Resep:"){
-//            qDebug() << "Resep:";
             state = "Resep";
         }
 
         if(state == "Makanan"){
-//            qDebug() << buffer;
-            foodHolder = buffer;
+            foodHolder = toFormalCase(buffer);
         }else if(state == "Resep"){
             if(buffer != "Resep:"){
-//                qDebug() << buffer;
-                recipeBuffer << buffer;
+                recipeBuffer << toFormalCase(buffer);
                 in.readLine();
                 QString categoryHolder = in.readLine();
-                kategoriBahan[buffer] = categoryHolder;
+                kategoriBahan[toFormalCase(buffer)] = toFormalCase(categoryHolder);
                 in.readLine();
                 QString valueHolder = in.readLine();
-                itemValue[buffer] = valueHolder;
-//                qDebug()<<jumlahBahan[buffer];
-                if(!(recipeList.contains(buffer))){
-                    recipeList << buffer;
+                itemValue[toFormalCase(buffer)] = toFormalCase(valueHolder);
+                if(!(recipeList.contains(toFormalCase(buffer)))){
+                    recipeList << toFormalCase(buffer);
                 }
             }
 
@@ -131,14 +125,14 @@ void MainWindow::ingredientsFormater(QMap<QString, QString> &katgoriBahanProto,Q
     QStringList listKategori;
     while (i.hasNext()) {
         i.next();
-        if(!(listKategori.contains(i.value()))){
-        listKategori << i.value();
-        kategoriBahan[i.value()] = listBahan;
+        if(!(listKategori.contains(toFormalCase(i.value())))){
+        listKategori << toFormalCase(i.value());
+        kategoriBahan[toFormalCase(i.value())] = listBahan;
         QMapIterator<QString,QString> it(katgoriBahanProto);
         while (it.hasNext()) {
             it.next();
-            if(it.value()==i.value()){
-                kategoriBahan[i.value()] << it.key();
+            if(toFormalCase(it.value())==toFormalCase(i.value())){
+                kategoriBahan[toFormalCase(i.value())] << toFormalCase(it.key());
 
             }
         }
@@ -155,7 +149,6 @@ void MainWindow::setupFoodTree(QMap<QString,QStringList> &recipe)
     QMapIterator<QString, QStringList> i(recipe);
     while (i.hasNext()) {
         i.next();
-//        qDebug() << i.key() << ": " << i.value() << endl;
         QTreeWidgetItem *foodItem = new QTreeWidgetItem(ui->foodTree);
         foodItem->setText(0, i.key());
         foodItem->setSizeHint(0,QSize(foodItem->sizeHint(0).width(),100));
@@ -163,33 +156,12 @@ void MainWindow::setupFoodTree(QMap<QString,QStringList> &recipe)
         while (it.hasNext()) {
             QString imgPath = it.next();
             if(":/img/img/"+i.key()+".jpg" == imgPath){
-//                qDebug() << imgPath;
                 foodItem->setIcon(0,QIcon(imgPath));
-//                qDebug() << "Image set";
            }
         }
         counter += 1;
 
     }
-
-//    foreach (QString food, recipe) {
-//        const QStringList styles = database.styles(family);
-//        if (styles.isEmpty())
-//            continue;
-
-//        QTreeWidgetItem *familyItem = new QTreeWidgetItem(fontTree);
-//        familyItem->setText(0, family);
-//        familyItem->setCheckState(0, Qt::Unchecked);
-//        familyItem->setFlags(familyItem->flags() | Qt::ItemIsAutoTristate);
-
-//        foreach (QString style, styles) {
-//            QTreeWidgetItem *styleItem = new QTreeWidgetItem(familyItem);
-//            styleItem->setText(0, style);
-//            styleItem->setCheckState(0, Qt::Unchecked);
-//            styleItem->setData(0, Qt::UserRole, QVariant(database.weight(family, style)));
-//            styleItem->setData(0, Qt::UserRole + 1, QVariant(database.italic(family, style)));
-//        }
-//    }
 }
 
 void MainWindow::setupIngredientsFilter(QMap<QString, QStringList> &kategoriBahan){
@@ -209,32 +181,10 @@ void MainWindow::setupIngredientsFilter(QMap<QString, QStringList> &kategoriBaha
             QTreeWidgetItem *ingredientItem = new QTreeWidgetItem(categoryItem);
                            ingredientItem->setText(0, bahan);
                            ingredientItem->setCheckState(0, Qt::Unchecked);
-//                           ingredientItem->setData(0, Qt::UserRole, QVariant(database.weight(family, style)));
-//                           styleItem->setData(0, Qt::UserRole + 1, QVariant(database.italic(family, style)));
 
         }
 
     }
-
-    //foreach (QString food, recipe) {
-   //        const QStringList styles = database.styles(family);
-   //        if (styles.isEmpty())
-   //            continue;
-
-   //        QTreeWidgetItem *familyItem = new QTreeWidgetItem(fontTree);
-   //        familyItem->setText(0, family);
-   //        familyItem->setCheckState(0, Qt::Unchecked);
-   //        familyItem->setFlags(familyItem->flags() | Qt::ItemIsAutoTristate);
-
-   //        foreach (QString style, styles) {
-   //            QTreeWidgetItem *styleItem = new QTreeWidgetItem(familyItem);
-   //            styleItem->setText(0, style);
-   //            styleItem->setCheckState(0, Qt::Unchecked);
-   //            styleItem->setData(0, Qt::UserRole, QVariant(database.weight(family, style)));
-   //            styleItem->setData(0, Qt::UserRole + 1, QVariant(database.italic(family, style)));
-   //        }
-   //    }
-
 }
 
 QStringList MainWindow::filterFoodList(){
@@ -258,11 +208,8 @@ void MainWindow::filterFoodListWidget(QStringList filteredFood){
     QMapIterator<QString,QStringList> i(resepMakanan);
     while(i.hasNext()){
         i.next();
-//        qDebug() << i.value();
-//        qDebug() << foodList->topLevelItem(0)->text(0);
         foreach(QString bahan,filteredFood){
             if(!(i.value().contains(bahan))&&(containCounter < 1)){
-//                qDebug() << i.value();
                 foodList->takeTopLevelItem(counter);
                 counter -= 1;
                 containCounter += 1;
@@ -286,12 +233,9 @@ QStringList MainWindow::getCurrentList(){
 void MainWindow::searchFoodList(){
     QString searchText = toFormalCase(ui->searchBar->text());
     QStringList currentList = getCurrentList();
-    qDebug() << searchText;
     int itemCounter = 0;
 
     foreach(QString item, currentList){
-//        QStringList itemSplit = item.split("");
-        qDebug()<< item;
         int M = searchText.size();
         int N = item.size();
         int matchCount = 0;
@@ -325,12 +269,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_searchBtn_clicked()
 {
-//    qDebug() << filterFoodList();
-    qDebug() << currentItemName;
     ui->foodTree->clear();
     setupFoodTree(resepMakanan);
     filterFoodListWidget(filterFoodList());
-    qDebug() << getCurrentList();
     searchFoodList();
 }
 
@@ -341,11 +282,6 @@ void MainWindow::on_foodTree_itemClicked(QTreeWidgetItem *item, int column)
     detaildialog = new detailDialog(this);
     detaildialog->show();
     detaildialog->setWindowTitle(item->text(column));
-//    hide();
-//    detailWindow = new DetailWindow();
-//    detailWindow->setMo
-//    detailWindow->setWindowTitle(item->text(column));
-
 }
 
 

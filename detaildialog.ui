@@ -106,7 +106,7 @@
    <item>
     <widget class="QPushButton" name="pushButton_2">
      <property name="text">
-      <string>Back</string>
+      <string>Kembali</string>
      </property>
     </widget>
    </item>
