@@ -1,6 +1,0 @@
-- Mie Instan
-Mie Instan	1
-Telur	2
-- Ayam Goreng
-Daging	1
-Telur	2
