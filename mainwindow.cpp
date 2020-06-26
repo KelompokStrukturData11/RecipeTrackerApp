@@ -1,21 +1,22 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 #include <QMessageBox>
 
 
 
-
+//Ketika aplikasi pertama kali dibuka kode dalam Mainwindow dieksekusi
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
+    //Deklarasi variabel
     QStringList resep;
     QStringList filteredItems;
 
+    //Pemanggilan Fungsi
     readRecipeDb(resepMakanan,
                  resep,
                  kategoriBahanProto,
@@ -24,20 +25,15 @@ MainWindow::MainWindow(QWidget *parent)
     ingredientsFormater(kategoriBahanProto,kategoriBahan);
     setupFoodTree(resepMakanan);
     setupIngredientsFilter(kategoriBahan);
-//    setDataDetail(deskripsiMakanan,gambarMakanan);
-//    qDebug() << filterFoodList();
     QMapIterator<QString,QStringList> i(kategoriBahan);
 
-//    QMapIterator<QString,QString> i(makananDetailResep["Mie Instan"]){}
-    qDebug() << makananDetailResep["Mie Instan"]["Mie Instan"];
-
-
-
+    //Setting Ui esensial
     ui->ingredientsTree->sortItems(0,Qt::AscendingOrder);
     ui->foodTree->sortItems(0,Qt::AscendingOrder);
     ui->searchBar->setPlaceholderText("Cari makanan...");
 }
 
+//Fungsi untuk memformat kapital dari text
 QString MainWindow::toFormalCase(QString text){
     for(int i = 0; i < text.size(); i++){
         if(text[i] == " "){
@@ -52,11 +48,13 @@ QString MainWindow::toFormalCase(QString text){
         return text;
 }
 
+// Fungsi untuk membaca database dan memasukan ke variabel
 void MainWindow::readRecipeDb(QMap<QString,QStringList> &recipe, QStringList &recipeList, QMap<QString,QString> &kategoriBahan
 , QMap<QString,QString> &deskripsiMakanan, QMap<QString, QMap<QString, QString> > &detailRecipe){
     QFile file(":/res/db/dbText/Hello.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-          qDebug() << "Cannot Open File";
+        return;
+          //qDebug() << "Cannot Open File";
     }
     QTextStream in(&file);
     QString state;
@@ -76,7 +74,8 @@ void MainWindow::readRecipeDb(QMap<QString,QStringList> &recipe, QStringList &re
             if(":/res/db/desciptions/"+foodHolder+".txt" == pathDes){
             QFile descriptions(pathDes);
             if (!descriptions.open(QIODevice::ReadOnly | QIODevice::Text)){
-                  qDebug() << "Cannot Open File";
+                return;
+//                  qDebug() << "Cannot Open File";
             }
             QTextStream inDescriptions(&descriptions);
             deskripsiMakanan[foodHolder] = inDescriptions.readAll();
@@ -119,6 +118,7 @@ void MainWindow::readRecipeDb(QMap<QString,QStringList> &recipe, QStringList &re
     file.close();
 }
 
+//Merapikan variabel list bahan
 void MainWindow::ingredientsFormater(QMap<QString, QString> &katgoriBahanProto,QMap<QString,QStringList> &kategoriBahan){
     QMapIterator<QString,QString> i(katgoriBahanProto);
     QStringList listBahan;
@@ -140,6 +140,7 @@ void MainWindow::ingredientsFormater(QMap<QString, QString> &katgoriBahanProto,Q
     }
 }
 
+//Membuat UI untuk menu list makanan
 void MainWindow::setupFoodTree(QMap<QString,QStringList> &recipe)
 {
     int counter = 0;
@@ -164,6 +165,7 @@ void MainWindow::setupFoodTree(QMap<QString,QStringList> &recipe)
     }
 }
 
+//Membuat UI untuk menu filter dengan bahan
 void MainWindow::setupIngredientsFilter(QMap<QString, QStringList> &kategoriBahan){
     ui->ingredientsTree->setColumnCount(1);
     ui->ingredientsTree->setHeaderLabels(QStringList() << tr("Bahan"));
@@ -187,6 +189,7 @@ void MainWindow::setupIngredientsFilter(QMap<QString, QStringList> &kategoriBaha
     }
 }
 
+//Fungsi untuk melakukan filter pada food
 QStringList MainWindow::filterFoodList(){
     QStringList filteredItems;
     for(int i = 0;i < ui->ingredientsTree->topLevelItemCount(); i++){
@@ -201,6 +204,7 @@ QStringList MainWindow::filterFoodList(){
     }
     return filteredItems;}
 
+//Melakukan update UI setelah di transfer
 void MainWindow::filterFoodListWidget(QStringList filteredFood){
     QTreeWidget *foodList = ui->foodTree;
     int counter = 0;
@@ -220,6 +224,7 @@ void MainWindow::filterFoodListWidget(QStringList filteredFood){
     }
 }
 
+//Fungsi untuk mendapatkan list makanan saat ini
 QStringList MainWindow::getCurrentList(){
     int currentListCount = ui->foodTree->topLevelItemCount();
     QStringList currentList;
@@ -229,7 +234,7 @@ QStringList MainWindow::getCurrentList(){
     return currentList;
 }
 
-
+// Fungsi untuk mencari makanan
 void MainWindow::searchFoodList(){
     QString searchText = toFormalCase(ui->searchBar->text());
     QStringList currentList = getCurrentList();
@@ -262,11 +267,13 @@ void MainWindow::searchFoodList(){
 }
 }
 
+//Fungsi bila window tertutup
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+//Button event untuk tombol cari makanan
 void MainWindow::on_searchBtn_clicked()
 {
     ui->foodTree->clear();
@@ -275,6 +282,7 @@ void MainWindow::on_searchBtn_clicked()
     searchFoodList();
 }
 
+// Event ketika salah satu list makanan di klik
 void MainWindow::on_foodTree_itemClicked(QTreeWidgetItem *item, int column)
 {
     hide();

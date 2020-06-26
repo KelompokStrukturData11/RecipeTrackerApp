@@ -6,11 +6,16 @@ Kategori:
 Bahan Pokok
 Jumlah:
 1 Mangkok
-Minyak
+Minyak goreng
 Kategori:
 Lain-lain
 Jumlah:
 0.2 Liter;
+Telur Ayam
+Kategori:
+Telur
+Jumlah:
+1 telur
 END
 Nama:
 Mie Instan
@@ -25,6 +30,11 @@ Kategori:
 Lain-lain
 Jumlah:
 1 Liter
+Telur Ayam
+Kategori:
+Telur
+Jumlah:
+1 telur
 END
 Nama:
 Nasi Kuning
@@ -68,7 +78,7 @@ Kategori:
 Rempah
 Jumlah:
 1/2 sendok teh
-ayam potong
+daging ayam
 Kategori:
 Daging
 Jumlah:
@@ -132,7 +142,7 @@ Garam
 Bumbu
 
 secukupnya
-air perasan jeruk nipis
+jeruk nipis
 
 Bumbu
 
@@ -162,12 +172,12 @@ jahe
 Rempah
 
 - 1 ruas
-kunyit dibakar
+kunyit
 
 Rempah
 
 - 1 cm
-kemiri disangrai
+kemiri
 
 Rempah
 

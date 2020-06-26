@@ -4,10 +4,8 @@
 #include <QMainWindow>
 
 #include <QFile>
-#include <QDebug>
 #include <QTextStream>
 #include <QDirIterator>
-#include <QHeaderView>
 #include <QTreeWidgetItem>
 
 
@@ -25,6 +23,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    //Deklarasi public variable
     QStringList currentItemRecipe;
     QString currentItemDescription;
     QString currentItemName;
@@ -54,6 +53,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     detailDialog *detaildialog;
+    //Prototype fungsi private
     QString toFormalCase(QString text);
     void setupFoodTree(QMap<QString,QStringList> &recipe);
     void ingredientsFormater(QMap<QString,QString> &katgoriBahanProto, QMap<QString,QStringList> &kategoriBahan);

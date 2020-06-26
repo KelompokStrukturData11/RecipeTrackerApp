@@ -1,38 +1,42 @@
 #include "detaildialog.h"
 #include "ui_detaildialog.h"
-#include <QtDebug>
 #include "mainwindow.h"
 
 MainWindow *listWindow;
+
 detailDialog::detailDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::detailDialog)
 {
     ui->setupUi(this);
+
+    //Declare variabel widht & Height
     int w = ui->foodImageLabel->width();
     int h = ui->foodImageLabel->height();
-    qDebug() << w << "  " << h;
     QString currentFood = parent->windowTitle();
+
     detailDialog::setGeometry(parent->geometry());
+
     listWindow = new MainWindow();
+
+    //Setup Ui
     ui->foodNameLabel->setText(currentFood);
     ui->foodDescription->setText(listWindow->deskripsiMakanan[currentFood]);
     QPixmap pixmap(listWindow->gambarMakanan[currentFood]);
     setupRecipeTree(listWindow->makananDetailResep[currentFood]);
-
     ui->foodImageLabel->setPixmap(pixmap.scaled(w,h,Qt::KeepAspectRatio));
-
 }
 
+//Ketika detail dialog ditutup
 detailDialog::~detailDialog()
 {
     delete ui;
 }
 
+//Membuat UI resep bahan list
 void detailDialog::setupRecipeTree(QMap<QString, QString> recipe){
-//    int counter = 0;
     ui->foodRecipe->setColumnCount(1);
-    ui->foodRecipe->setHeaderLabels(QStringList() << tr("Resep"));
+    ui->foodRecipe->setHeaderLabels(QStringList() << tr("Bahan"));
     ui->foodRecipe->setIconSize(QSize(50,100));
     QMapIterator<QString,QString> i(recipe);
     while(i.hasNext()){
@@ -45,6 +49,7 @@ void detailDialog::setupRecipeTree(QMap<QString, QString> recipe){
     }
 }
 
+//Event ketika tombol kembali di klik
 void detailDialog::on_pushButton_2_clicked()
 {
     hide();
