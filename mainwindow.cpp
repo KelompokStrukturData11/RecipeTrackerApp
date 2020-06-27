@@ -213,11 +213,12 @@ void MainWindow::filterFoodListWidget(QStringList filteredFood){
     while(i.hasNext()){
         i.next();
         foreach(QString bahan,filteredFood){
-            if(!(i.value().contains(bahan))&&(containCounter < 1)){
+            if((!(i.value().contains(bahan))&&(containCounter < 1))){
+                if(filteredFood.last() == bahan){
                 foodList->takeTopLevelItem(counter);
-                counter -= 1;
-                containCounter += 1;
-            }
+                counter -= 1;}
+            }else{
+            containCounter += 1;}
         }
         counter += 1;
         containCounter = 0;
