@@ -1,3 +1,5 @@
+INI adalah Database Resep
+
 Nama:
 Nasi Goreng
 Resep:
